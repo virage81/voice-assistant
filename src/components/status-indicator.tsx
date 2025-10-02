@@ -1,38 +1,26 @@
 'use client';
 
-import { Status } from '@/types';
-import { Loader2, Mic, Radio, Waves } from 'lucide-react';
+import { CALL_STATUS } from '@/lib/vapi';
+import { Loader2, Mic } from 'lucide-react';
 import { useMemo } from 'react';
 
 interface StatusIndicatorProps {
-	status: Status;
+	status: CALL_STATUS;
 }
 
-const getStatusConfig = (status: Status) => {
+const getStatusConfig = (status: CALL_STATUS) => {
 	switch (status) {
-		case 'loading':
+		case CALL_STATUS.LOADING:
 			return {
 				icon: <Loader2 className='w-6 h-6 animate-spin' />,
 				text: 'Loading...',
 				color: 'text-muted-foreground',
 			};
-		case 'listening':
+		case CALL_STATUS.ACTIVE:
 			return {
 				icon: <Mic className='w-6 h-6 animate-pulse' />,
 				text: 'Listening...',
 				color: 'text-primary',
-			};
-		case 'processing':
-			return {
-				icon: <Radio className='w-6 h-6' />,
-				text: 'Processing...',
-				color: 'text-accent',
-			};
-		case 'talking':
-			return {
-				icon: <Waves className='w-6 h-6 animate-pulse' />,
-				text: 'Speaking...',
-				color: 'text-accent',
 			};
 		default:
 			return {
