@@ -1,42 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with
-[`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Voice Assistant with Meeting Scheduler
 
-## Getting Started
+A web application featuring an AI voice assistant that helps users schedule meetings through natural voice interaction. The assistant collects user information, suggests available time slots, and books appointments using calendar integration.
 
-First, run the development server:
+## Features
+
+- Voice-based interaction using speech-to-text and text-to-speech
+- Natural language understanding for scheduling requests
+- Calendar integration for checking availability and booking meetings
+- Interactive voice-driven user experience
+
+## Technologies
+
+- **Frontend**: Next.js with TypeScript and Tailwind CSS
+- **Voice AI**: Vapi.ai for speech recognition and synthesis
+- **Calendar API**: Nylas for availability checking and meeting scheduling
+
+## Prerequisites
+
+- Node.js 18.x or higher
+- npm or yarn
+- Vapi.ai API key
+- Nylas API credentials
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd voice-assistant
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   ```bash
+   cp .env.example .env.local
+   ```
+   Then edit `.env.local` with your API keys and credentials.
+
+## Running the Application
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to use the voice assistant.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Development
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically
-optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project follows GitFlow for version control:
+- `ai-main`: Production-ready code
+- `ai-development`: Development branch
+- Feature branches are created from `ai-development`
 
-## Learn More
+## API Keys Setup
 
-To learn more about Next.js, take a look at the following resources:
+### Vapi.ai
+1. Create an account at [Vapi.ai](https://vapi.ai)
+2. Generate an API key from your dashboard
+3. Add the key to your `.env.local` file
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions
-are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the
-[Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
-from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for
-more details.
+### Nylas Calendar API
+1. Sign up at [Nylas Developer Portal](https://developer.nylas.com/)
+2. Create a new application to get your client ID and secret
+3. Set up authentication and obtain a grant ID
+4. Add these credentials to your `.env.local` file
