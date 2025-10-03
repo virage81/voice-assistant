@@ -4,8 +4,8 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
 	try {
-		const { dateTime } = await req.json();
-		if (!dateTime) return NextResponse.json({ error: 'dateTime not provided' }, { status: 400 });
+		const { dateTime, name } = await req.json();
+		if (!dateTime || !name) return NextResponse.json({ error: '`dateTime` or `name` not provided' }, { status: 400 });
 		const startDate = roundDateToNearestFiveMinutes(new Date(dateTime));
 
 		const { data: event } = await nylas.events.create({
@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
 				calendarId: 'bugay30112003@gmail.com',
 			},
 			requestBody: {
-				title: 'Event from voice Assistant',
+				title: `Event from ${name.trim()}`,
 				description: 'Voice Assistant event',
 				when: {
 					time: startDate.getTime() / 1000,
