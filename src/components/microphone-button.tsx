@@ -1,26 +1,22 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Status } from '@/types';
+import { CALL_STATUS } from '@/lib/vapi';
 import { Mic } from 'lucide-react';
 import { useMemo } from 'react';
 
 interface MicrophoneButtonProps {
-	status: Status;
+	status: CALL_STATUS;
 	onClick: () => void;
 }
 
 export function MicrophoneButton({ status, onClick }: MicrophoneButtonProps) {
-	const isActive = useMemo(() => status === 'listening' || status === 'talking', [status]);
-	const isDisabled = useMemo(() => status === 'loading' || status === 'processing', [status]);
+	const isActive = useMemo(() => status === CALL_STATUS.ACTIVE, [status]);
+	const isDisabled = useMemo(() => status === CALL_STATUS.LOADING, [status]);
 
 	return (
 		<div className='relative'>
 			{isActive && <div className='absolute inset-0 rounded-full bg-accent/30 animate-ping' />}
-
-			{status === 'listening' && (
-				<div className='absolute inset-0 rounded-full border-4 border-primary animate-pulse' />
-			)}
 
 			<Button
 				onClick={onClick}
