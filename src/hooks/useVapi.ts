@@ -8,7 +8,6 @@ import vapi, {
 	TranscriptMessage,
 	TranscriptMessageTypeEnum,
 } from '@/lib/vapi';
-import { CreateAssistantDTO } from '@vapi-ai/web/dist/api';
 
 import { useEffect, useState } from 'react';
 
@@ -79,7 +78,7 @@ export function useVapi() {
 
 	const start = async () => {
 		setCallStatus(CALL_STATUS.LOADING);
-		const response = vapi.start(assistant as CreateAssistantDTO);
+		const response = vapi.start(assistant);
 
 		response.then(res => {
 			console.log('call', res);
@@ -99,8 +98,6 @@ export function useVapi() {
 			start();
 		}
 	};
-
-	useEffect(() => console.debug(messages), [messages]);
 
 	return {
 		isSpeechActive,
