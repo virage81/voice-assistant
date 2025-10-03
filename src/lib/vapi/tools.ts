@@ -1,6 +1,7 @@
+import { config } from '@/config';
 import { CreateApiRequestToolDTO } from '@vapi-ai/web/dist/api';
 
-const apiUri = process.env.NEXT_PUBLIC_API_URL;
+const { apiUri } = config;
 
 export const getAvailabilityTool: CreateApiRequestToolDTO = {
 	type: 'apiRequest',

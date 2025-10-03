@@ -1,3 +1,4 @@
+import { config } from '@/config';
 import { nylas } from '@/lib/nylas';
 import { roundDateToNearestFiveMinutes } from '@/utils';
 import { NextRequest, NextResponse } from 'next/server';
@@ -9,9 +10,9 @@ export async function POST(req: NextRequest) {
 		const startDate = roundDateToNearestFiveMinutes(new Date(dateTime));
 
 		const { data: event } = await nylas.events.create({
-			identifier: process.env.NYLAS_CALENDAR_GRANT_ID!,
+			identifier: config.nylas.grantId,
 			queryParams: {
-				calendarId: 'bugay30112003@gmail.com',
+				calendarId: config.nylas.calendarId,
 			},
 			requestBody: {
 				title: `Event from ${name.trim()}`,
