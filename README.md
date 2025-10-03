@@ -1,6 +1,18 @@
-# Voice Assistant with Meeting Scheduler
+# Voice Assistant
 
-A web application featuring an AI voice assistant that helps users schedule meetings through natural voice interaction. The assistant collects user information, suggests available time slots, and books appointments using calendar integration.
+Voice Assistant is a small Next.js service that integrates a voice-driven scheduling assistant with calendars via the
+Nylas API. It exposes two main API routes: checking calendar availability and creating calendar events.
+
+This repository contains minimal server-side endpoints used by the voice assistant to check available time slots and to
+book meetings.
+
+Contents
+
+- `src/config/index.ts` — app configuration (environment variables and defaults)
+- `src/lib/nylas/client.ts` — helper functions that call the Nylas API
+- `src/app/api/check-availability/route.ts` — GET endpoint that returns available 60-minute slots (step: 5 minutes) for
+  the next 7 days
+- `src/app/api/create-event/route.ts` — POST endpoint that creates an event in Nylas calendar
 
 ## Features
 
@@ -25,12 +37,14 @@ A web application featuring an AI voice assistant that helps users schedule meet
 ## Installation
 
 1. Clone the repository:
+
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/virage81/voice-assistant.git
    cd voice-assistant
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
@@ -54,6 +68,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to use the v
 ## Development
 
 This project follows GitFlow for version control:
+
 - `ai-main`: Production-ready code
 - `ai-development`: Development branch
 - Feature branches are created from `ai-development`
@@ -61,11 +76,13 @@ This project follows GitFlow for version control:
 ## API Keys Setup
 
 ### Vapi.ai
+
 1. Create an account at [Vapi.ai](https://vapi.ai)
 2. Generate an API key from your dashboard
 3. Add the key to your `.env.local` file
 
 ### Nylas Calendar API
+
 1. Sign up at [Nylas Developer Portal](https://developer.nylas.com/)
 2. Create a new application to get your client ID and secret
 3. Set up authentication and obtain a grant ID
